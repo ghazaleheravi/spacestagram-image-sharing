@@ -1,0 +1,30 @@
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [
+    {
+      "src": "loading-image.gif",
+      "sizes": "64x64",
+      "type": "image/gif"
+    },
+    {
+      "src": "like.png",
+      "sizes": "32x31",
+      "type": "image/png"
+    },
+    {
+      "src": "nasaLogo2.png",
+      "sizes": "55x46",
+      "type": "image/png"
+    },
+    {
+      "src": "unlike.png",
+      "sizes": "32x31",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
