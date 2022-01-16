@@ -31,7 +31,7 @@ function App() {
       .catch(error => {
         setError(error);
       }) 
-  }, [startDate, endDate, isLoaded]);
+  }, [startDate, endDate, isLoaded, url]);
  
   function setDate(start, end) {
     setStartDate(start);
