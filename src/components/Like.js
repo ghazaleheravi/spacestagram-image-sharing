@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import LikeImage from '../svgComponents/LikeImage';
+import UnlikeImage from '../svgComponents/UnlikeImage';
 
 function Like(props) {
   const [isLiked, setIsLiked] = useState(false);
-  const [disLike, setDisLike] = useState(false);
+  const [unLiked, setUnLiked] = useState(false);
   
   function handleLikeClick() {
-    if(isLiked === false) {
+    if(!isLiked) {
       setIsLiked(true);
       localStorage.setItem(props.data.title, 'Liked');
     } else {
@@ -15,31 +17,37 @@ function Like(props) {
   }
 
   function handleDisLikeClick() {
-    if(disLike === true) {
-      setDisLike(false);
+    if(unLiked) {
+      setUnLiked(false);
     } else {
-      setDisLike(true);
+      setUnLiked(true);
       localStorage.removeItem(props.data.title);
     }
   }
 
-  if (disLike === false && localStorage.getItem(props.data.title)) {
+  if (unLiked === false && localStorage.getItem(props.data.title)) {
     return ( 
-      <button className="like-btn" type="button" onClick={handleDisLikeClick}>
-        {disLike === true 
-          ? <img src={process.env.PUBLIC_URL+'/unlike.png'} alt="like"/> 
-          : <img src={process.env.PUBLIC_URL+'/like.png'} alt="liked"/>
-        }
+      <button 
+        className="like-btn" 
+        type="button" 
+        onClick={handleDisLikeClick} 
+        name="favorite"
+        aria-hidden="true"
+      >
+        {unLiked === true ? <UnlikeImage /> : <LikeImage />}
       </button>
     )
   } 
   else {
     return (
-      <button className="like-btn" type="button" onClick={handleLikeClick}>
-        {isLiked === false 
-          ? <img src={process.env.PUBLIC_URL+'/unlike.png'} alt="like"/> 
-          : <img src={process.env.PUBLIC_URL+'/like.png'} alt="liked"/>
-        }
+      <button 
+        className="like-btn"  
+        type="button" 
+        onClick={handleLikeClick} 
+        name="favorite"
+        aria-hidden="true"
+      >
+        {isLiked === false ? <UnlikeImage /> : <LikeImage />}
       </button>
     )
   }

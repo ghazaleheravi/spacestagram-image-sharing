@@ -20,8 +20,8 @@ function Date(props) {
   }
 
   return(
-    <form className="form" onSubmit={handleSubmit}>
-      <label className="label_start_date" htmlFor="start_date">See NASA pictures From: </label>
+    <form className="form" onSubmit={handleSubmit} role="search">
+      <label className="label_start_date" htmlFor="start_date">Start Date: </label>
       <input 
         type="date"
         id="start_date"
@@ -29,8 +29,10 @@ function Date(props) {
         required={true}
         value={startDate}
         onChange={handleSubmitedStartDate}
+        aria-required="true"
+        aria-label="Pick a start date"
       />
-      <label className="label_end_date" htmlFor="end_date">To: </label>
+      <label className="label_end_date" htmlFor="end_date">End Date: </label>
       <input
         type="date"
         id="end_date"
@@ -40,8 +42,10 @@ function Date(props) {
         onChange={handleSubmitedEndDate}
         min={startDate}
         max={moment().format('YYYY-MM-DD')}
+        aria-required="true"
+        aria-label="Pick a end date"
       />
-      <button type="submit" className="search-btn">Search</button>
+      <button type="submit" className="search_btn" name="Search">Search</button>
     </form>
   );
 }

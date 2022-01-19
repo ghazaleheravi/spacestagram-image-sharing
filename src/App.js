@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from './components/DatePicker';
 import Image from './components/Image';
+import Header from './svgComponents/Header';
+
 
 function App() {
   const key = 'T3rb301Uv0xEVOjZ9V41b1SgkbKzyuAyJ8nE7nNn';
@@ -31,7 +33,7 @@ function App() {
       .catch(error => {
         setError(error);
       }) 
-  }, [startDate, endDate, isLoaded, url]);
+  }, [startDate, endDate]);
  
   function setDate(start, end) {
     setStartDate(start);
@@ -43,14 +45,14 @@ function App() {
   }
   
   if (error) {
-    return <div>Someting wnt wrong. Error:{error.message}</div>
+    return <div>Something went wrong. Error: {error.message}</div>
   } 
   else if (!isLoaded) {
     return (
       <div className="loading">
-        <img className="loading_image" 
-          src={process.env.PUBLIC_URL + '/loading-image.gif'}
-          alt="Getting Data from NASA..."
+        <img 
+          src={process.env.PUBLIC_URL + '/loading-image2.gif'}
+          alt=""
         />
         <p>Getting Data From NASA...</p>
       </div>
@@ -58,12 +60,23 @@ function App() {
   } 
   else {
     return (
-      <div className="App">
-        <h1 className="header">Awesome Pictures From Above Us!!!</h1>
-        <DatePicker setDate={setDate} setEndDate={setDate} load={loadingHandler} />
-        {data.map((item,idx) => <Image key={idx} {...item} />)}
-        <footer className="footer">Project for Shopify Internship 2022 by Ghazaleh H.</footer>
-      </div>
+      <React.Fragment>
+        <Header />
+        <nav role="navigation" className="nav">
+          <p id="nav_header">Choose a period to see NASA's picture(s) of the day.</p>
+          <p>Or reload the page for 10 random pictures.</p>
+          <DatePicker setDate={setDate} setEndDate={setDate} load={loadingHandler} />
+        </nav>
+        <main className="App">
+          {data.map(item => 
+            <Image key={item.title} {...item} />
+          )}
+        </main>
+        <footer className="footer">
+          <p>by Ghazaleh H.</p>
+          <p>Brought to you by NASA's<a href="https://api.nasa.gov/#apod" id="link"> Astronomy Picture of the Day</a> API</p>
+        </footer>
+      </React.Fragment>
     );
   }
 }
