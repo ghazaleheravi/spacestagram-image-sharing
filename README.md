@@ -1,7 +1,3 @@
-A webpage that can pull images, and allow the user to “like” and “unlike” their favourite images.
+Spacestagram: Image-Sharing from The Final Frontier
 
-
-Fetch data from one of NASA’s APIs and display the resulting images 
-Display descriptive data for each image (for example: title, date, description, etc.)
-Like an image
-Unlike an image
+A webpage that can pull images and descriptive data randomly or within a period of time from NASA’s Astronomy Picture of the Day  API, and allow the user to “like” and “unlike” images and save their like status on each image after reloading the page. 
